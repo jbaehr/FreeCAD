@@ -78,22 +78,44 @@ Helix::Helix()
     addSubType = FeatureAddSub::Additive;
 
     const char* group = "Helix";
-    ADD_PROPERTY_TYPE(Base, (Base::Vector3d(0.0, 0.0, 0.0)), group, App::Prop_ReadOnly, "The center point of the helix' start.");
-    ADD_PROPERTY_TYPE(Axis, (Base::Vector3d(0.0, 1.0, 0.0)), group, App::Prop_ReadOnly, "The helix' direction.");
-    ADD_PROPERTY_TYPE(Pitch, (10.), group, App::Prop_None, "The axial distance between two turns.");
-    ADD_PROPERTY_TYPE(Height, (30.0), group, App::Prop_None, "The total length of the helix (not accounting for the extent of the profile)");
-    ADD_PROPERTY_TYPE(Turns, (3.0), group, App::Prop_None, "The number of turns in the helix (does not need to be a whole number).");
+    ADD_PROPERTY_TYPE(Base, (Base::Vector3d(0.0, 0.0, 0.0)), group, App::Prop_ReadOnly,
+        QT_TRANSLATE_NOOP("App::Property", "The center point of the helix' start."));
+    ADD_PROPERTY_TYPE(Axis, (Base::Vector3d(0.0, 1.0, 0.0)), group, App::Prop_ReadOnly,
+        QT_TRANSLATE_NOOP("App::Property", "The helix' direction."));
+    ADD_PROPERTY_TYPE(Pitch, (10.), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "The axial distance between two turns."));
+    ADD_PROPERTY_TYPE(Height, (30.0), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "The height of the helix, i.e. \"Pitch * Turns\""
+        " (not accounting for the extent of the profile)."));
+    ADD_PROPERTY_TYPE(Turns, (3.0), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "The number of turns in the helix"
+        " (does not need to be a whole number)."));
     Turns.setConstraints(&floatTurns);
-    ADD_PROPERTY_TYPE(LeftHanded, (long(0)), group, App::Prop_None, "Determins whether the turning direction of helix follows the \"left-hand rule\", i.e. counter-clockwise when moving along its axis.");
-    ADD_PROPERTY_TYPE(Reversed, (long(0)), group, App::Prop_None, "Determins whether the helix points in the opposite direction of the reference axis.");
-    ADD_PROPERTY_TYPE(Angle, (0.0), group, App::Prop_None, "If non-zero, the profile's path wraps around a cone with this angle, instead of a cylinder. Positive values make the radius grow, nevatige shrink.");
-    ADD_PROPERTY_TYPE(Growth, (0.0), group, App::Prop_None, "The growth of the helix' radius per turn. Non-zero values turn the helix into a conical spiral.");
+    ADD_PROPERTY_TYPE(LeftHanded, (long(0)), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "Determines whether the turning direction of helix follows"
+        " the \"left-hand rule\", i.e. counter-clockwise when moving along its axis."));
+    ADD_PROPERTY_TYPE(Reversed, (long(0)), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "Determines whether the helix points in the opposite direction"
+        " of the reference axis."));
+    ADD_PROPERTY_TYPE(Angle, (0.0), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "If non-zero, the profile's path wraps around a cone with this angle,"
+        " instead of a cylinder. Positive values make the radius grow, nevatige shrink."));
     Angle.setConstraints(&floatAngle);
-    ADD_PROPERTY_TYPE(ReferenceAxis, (0), group, App::Prop_None, "The reference axis of the helix.");
-    ADD_PROPERTY_TYPE(Mode, (long(0)), group, App::Prop_None, "The helix input mode.");
-    ADD_PROPERTY_TYPE(Outside, (long(0)), group, App::Prop_None, "Determins whether the result will be the intersection of the profile and the preexisting body.");
-    ADD_PROPERTY_TYPE(HasBeenEdited, (long(0)), group, App::Prop_Hidden, "If false, the tool will propose an initial value for pitch based on the profile bounding box, so that self intersection is avoided.");
+    ADD_PROPERTY_TYPE(Growth, (0.0), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "The growth of the helix' radius per turn."
+        " Non-zero values turn the helix into a conical spiral."));
+    ADD_PROPERTY_TYPE(ReferenceAxis, (0), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "The reference axis of the helix."));
+    ADD_PROPERTY_TYPE(Mode, (long(0)), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "The helix input mode specifies which properties are set by the user."
+        " Dependent properties are then calculated."));
     Mode.setEnums(ModeEnums);
+    ADD_PROPERTY_TYPE(Outside, (long(0)), group, App::Prop_None,
+        QT_TRANSLATE_NOOP("App::Property", "Determines whether the result will be the intersection of the profile"
+        " and the preexisting body."));
+    ADD_PROPERTY_TYPE(HasBeenEdited, (long(0)), group, App::Prop_Hidden,
+        QT_TRANSLATE_NOOP("App::Property", "If false, the tool will propose an initial value for pitch"
+        " based on the profile bounding box, so that self intersection is avoided."));
 }
 
 short Helix::mustExecute() const
