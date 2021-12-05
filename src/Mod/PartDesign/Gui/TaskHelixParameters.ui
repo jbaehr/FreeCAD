@@ -230,7 +230,7 @@
      <item>
       <widget class="QLabel" name="labelGrowth">
        <property name="text">
-        <string>Growth:</string>
+        <string>Radius growth:</string>
        </property>
       </widget>
      </item>
