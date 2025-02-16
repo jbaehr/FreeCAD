@@ -65,7 +65,19 @@ class JobCreate:
                     if idx not in [2, 3, 6]:
                         msg = translate(
                             "CAM_Job",
-                            "The currently selected unit schema: \n     '{}' for this document\n Does not use 'minutes' for velocity values. \n \nCNC machines require feed rate to be expressed in \nunit/minute. To ensure correct G-code: \nSelect a minute-based schema in preferences.\nFor example:\n    'Metric, Small Parts & CNC'\n    'US Customary'\n    'Imperial Decimal'",
+                            (
+                                "This document's unit schema:\n"
+                                "    '{}'\n"
+                                "Does not use 'minutes' for velocity values.\n"
+                                "\n"
+                                "CNC machines require feed rate to be expressed in unit/minute. "
+                                "To ensure correct G-code, select a minute-based schema in the "
+                                "document properties.\n"
+                                "For example:\n"
+                                "    'Metric, Small Parts & CNC'\n"
+                                "    'US Customary'\n"
+                                "    'Imperial Decimal'"
+                            ),
                         ).format(current_schema)
                         header = translate("CAM_Job", "Warning")
                         msgbox = QtGui.QMessageBox(QtGui.QMessageBox.Warning, header, msg)
